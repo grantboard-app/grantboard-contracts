@@ -1,22 +1,74 @@
-# Soroban Project
+# grantboard-contracts
+
+Soroban smart contracts for GrantBoard — a decentralized grant management platform built on Stellar.
+
+## Overview
+
+This contract handles the core on-chain logic for GrantBoard:
+
+- Posting grants with milestone-based funding
+- Accepting contributor applications
+- Selecting a grant recipient
+- Releasing funds per milestone approval
+
+## Contract Functions
+
+| Function            | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `create_grant`      | Post a grant and lock funds into the contract    |
+| `apply`             | Submit an application for a grant                |
+| `select_applicant`  | Reviewer selects a contributor from applicants   |
+| `approve_milestone` | Reviewer approves a milestone and releases funds |
+| `get_grant`         | Read grant data                                  |
 
 ## Project Structure
 
-This repository uses the recommended structure for a Soroban project:
+contracts/
+└── grantboard/
+└── src/
+├── lib.rs # Contract logic
+└── test.rs # Unit tests
 
-```text
-.
-├── contracts
-│   └── hello_world
-│       ├── src
-│       │   ├── lib.rs
-│       │   └── test.rs
-│       └── Cargo.toml
-├── Cargo.toml
-└── README.md
+## Getting Started
+
+### Prerequisites
+
+- Rust
+- Stellar CLI
+
+### Install Rust
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup target add wasm32-unknown-unknown
 ```
 
-- New Soroban contracts can be put in `contracts`, each in their own directory. There is already a `hello_world` contract in there to get you started.
-- If you initialized this project with any other example contracts via `--with-example`, those contracts will be in the `contracts` directory as well.
-- Contracts should have their own `Cargo.toml` files that rely on the top-level `Cargo.toml` workspace for their dependencies.
-- Frontend libraries can be added to the top-level directory as well. If you initialized this project with a frontend template via `--frontend-template` you will have those files already included.
+### Install Stellar CLI
+
+```bash
+cargo install --locked stellar-cli
+```
+
+### Run Tests
+
+```bash
+cargo test
+```
+
+### Build Contract
+
+```bash
+stellar contract build
+```
+
+## Contributing
+
+1. Fork the repo
+2. Create a feature branch
+3. Make your changes
+4. Ensure all tests pass with `cargo test`
+5. Open a pull request
+
+## License
+
+MIT
